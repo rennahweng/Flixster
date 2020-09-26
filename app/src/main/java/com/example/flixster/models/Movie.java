@@ -32,4 +32,23 @@ public class Movie {
         return movieList;
     }
 
+    public String getPosterPath() {
+        // hardcode size to be a width of 342
+        return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
+        /*
+         * Proper way:
+         * 1. Fetch all available sizes
+         * 2. Append it to the base URL: https://image.tmdb.org/t/p/
+         * 3. Then add in the relative path from posterPath in "results"
+         */
+
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
 }

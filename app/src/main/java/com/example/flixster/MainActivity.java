@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONArray results = jsonObject.getJSONArray("results");
                     Log.i(TAG, "Results: " + results.toString());
                     movieList = Movie.moviesFromJsonArray(results);
+                    Log.i(TAG, "Movies: " + movieList.size());
 
                 } catch (JSONException e) {
                     // parse key might not exist or other issue when parsing json
