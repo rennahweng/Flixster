@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // This class encapsulate the idea of an Movie
+// A model class to use as the data source of movies
 public class Movie {
     String posterPath;
     String title;
