@@ -30,4 +30,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    // Async Http Client - library that make it easy to send and parse network requests
+    implementation 'com.codepath.libraries:asynchttpclient:0.0.9'
 }
