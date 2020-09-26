@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 Log.d(TAG, "onSuccess");
+
                 // from debugger, look at the json response and parse it
                 JSONObject jsonObject = json.jsonObject;
                 try {
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     movieList.addAll( Movie.moviesFromJsonArray(results) );
                     // re-render movie if data changed
                     movieAdapter.notifyDataSetChanged();
+
                     Log.i(TAG, "Movies: " + movieList.size());
 
                 } catch (JSONException e) {

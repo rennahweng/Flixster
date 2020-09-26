@@ -15,6 +15,7 @@ public class Movie {
     String posterPath;
     String title;
     String overview;
+    String backdropPath;
 
     // Constructor
     public Movie(JSONObject jsonObject) throws JSONException {
@@ -22,6 +23,7 @@ public class Movie {
         posterPath = jsonObject.getString("poster_path");
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
+        backdropPath = jsonObject.getString("backdrop_path");
     }
 
     // Return a list of movies from the jsonArray "results"
@@ -42,7 +44,11 @@ public class Movie {
          * 2. Append it to the base URL: https://image.tmdb.org/t/p/
          * 3. Then add in the relative path from posterPath in "results"
          */
+    }
 
+    public String getBackdropPath() {
+        // hardcode size to be a width of 342
+        return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
     }
 
     public String getTitle() {
@@ -52,4 +58,5 @@ public class Movie {
     public String getOverview() {
         return overview;
     }
+
 }
