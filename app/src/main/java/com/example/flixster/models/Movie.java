@@ -1,7 +1,5 @@
 package com.example.flixster.models;
 
-import com.facebook.stetho.inspector.jsonrpc.JsonRpcException;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,6 +14,7 @@ public class Movie {
     String title;
     String overview;
     String backdropPath;
+    double voteAvg;
 
     // Constructor
     public Movie(JSONObject jsonObject) throws JSONException {
@@ -24,6 +23,7 @@ public class Movie {
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
         backdropPath = jsonObject.getString("backdrop_path");
+        voteAvg = jsonObject.getDouble("vote_average");
     }
 
     // Return a list of movies from the jsonArray "results"
@@ -59,4 +59,7 @@ public class Movie {
         return overview;
     }
 
+    public double getVoteAvg() {
+        return voteAvg;
+    }
 }
