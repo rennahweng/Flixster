@@ -3,18 +3,25 @@ package com.example.flixster.models;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // This class encapsulate the idea of an Movie
 // A model class to use as the data source of movies
+// Make movie parcelable
+@Parcel
 public class Movie {
     String posterPath;
     String title;
     String overview;
     String backdropPath;
-    double voteAvg;
+    double rating;
+
+    // Empty constructor needed by Parcel library
+    public Movie() {
+    }
 
     // Constructor
     public Movie(JSONObject jsonObject) throws JSONException {
@@ -23,7 +30,7 @@ public class Movie {
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
         backdropPath = jsonObject.getString("backdrop_path");
-        voteAvg = jsonObject.getDouble("vote_average");
+        rating = jsonObject.getDouble("vote_average");
     }
 
     // Return a list of movies from the jsonArray "results"
@@ -59,7 +66,7 @@ public class Movie {
         return overview;
     }
 
-    public double getVoteAvg() {
-        return voteAvg;
+    public double getRating() {
+        return rating;
     }
 }

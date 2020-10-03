@@ -3,7 +3,6 @@ package com.example.flixster.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.telecom.Conference;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,16 +10,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.flixster.DetailActivity;
-import com.example.flixster.MainActivity;
+import com.example.flixster.MovieDetailActivity;
 import com.example.flixster.R;
 import com.example.flixster.models.Movie;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -116,8 +115,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                  @Override
                  public void onClick(View view) {
                      // Toast is a pop-up window on app screen
-                      Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
+                     // Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
 
+                     // 2. Navigate to a new activity
+                     // first parameter is the context, second is the class of the activity to launch
+                     Intent i = new Intent(context, MovieDetailActivity.class);
+                     // put "extras" into the bundle for access in the second activity
+                     // Parcelable allows to break an object down and reconstruct on receiving activity
+                     i.putExtra("movie", Parcels.wrap(movie));
+                     // brings up the second activity
+                     context.startActivity(i);
                  }
              });
          }
