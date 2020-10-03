@@ -30,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // .onCreate() means activity is starting, but not visible to user
         super.onCreate(savedInstanceState);
+        // setContentView() initializes views and set up any adapters
         setContentView(R.layout.activity_main);
 
         RecyclerView rvMovies = findViewById(R.id.rvMovies);
