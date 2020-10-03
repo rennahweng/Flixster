@@ -23,6 +23,7 @@ import okhttp3.Headers;
 
 public class MovieDetailActivity extends YouTubeBaseActivity {
 
+    public static final String TAG = "MovieDetailActivity";
     public static final String YOUTUBE_API_KEY = "AIzaSyBWySv6L813ONx3TorGUaEuPz1_UdTd7RQ";
     public static final String VIDEOS_URL = "https://api.themoviedb.org/3/movie/%d/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
@@ -39,7 +40,7 @@ public class MovieDetailActivity extends YouTubeBaseActivity {
         tvTitle = findViewById(R.id.tvTitle);
         tvOverview = findViewById(R.id.tvOverview);
         ratingBar = findViewById(R.id.ratingBar);
-        youtubePlayerView  =findViewById(R.id.youtubePlayer);
+        youtubePlayerView = findViewById(R.id.youtubePlayer);
 
         // Once data is added to intent bundle, pull whole movie object from bundle
         // then pull specific data and populate them
@@ -51,49 +52,51 @@ public class MovieDetailActivity extends YouTubeBaseActivity {
 
         // Make HTTP request to movie databases api to extract videos
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get(String.format(VIDEOS_URL, 209112), new JsonHttpResponseHandler() {
+        client.get(String.format(VIDEOS_URL, movie.getMovieId()), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 try {
                     JSONArray results = json.jsonObject.getJSONArray("results");
                     // check if we get an non-empty result back from api
                     if (results.length() == 0) {
-                        return; // do nothing
+                        return;
                     } else {
                         String youtubeKey = results.getJSONObject(0).getString("key");
-                        Log.e("MovieDetailActivity", youtubeKey);
+                        Log.d(TAG, youtubeKey);
+                        // store youtubeKey received from the movie api so we can cue video later
+                        initializeYoutube(youtubeKey);
                     }
                 } catch (JSONException e) {
-                    Log.e("MovieDetailActivity", "Failed to parse JSON", e);
+                    Log.e(TAG, "Failed to parse JSON", e);
                     e.printStackTrace();
                 }
-
             }
 
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-
+                Log.d(TAG, "AsyncHttpClient onFailure");
             }
         });
+    }
 
-
-
+    // Dynamically initialize youtube key to cue corresponding videos for each movie
+    private void initializeYoutube(final String youtubeKey) {
         // Add movie trailer in youtube player view
         youtubePlayerView.initialize(YOUTUBE_API_KEY, new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 // DEBUG in Logcat
-                Log.d("MovieDetailActivity", "onInitializationSuccess");
+                Log.d(TAG, "onInitializationSuccess");
 
                 // Extract video id of the movies from movie database api,
                 // then cue video, play video, or other actions
-                youTubePlayer.cueVideo("5xVh-7ywKpE");
+                youTubePlayer.cueVideo(youtubeKey);
             }
 
             @Override
             public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
                 // DEBUG in Logcat
-                Log.d("MovieDetailActivity", "onInitializationFailure");
+                Log.d(TAG, "onInitializationFailure");
             }
         });
     }

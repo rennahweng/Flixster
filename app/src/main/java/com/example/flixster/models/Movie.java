@@ -13,9 +13,11 @@ import java.util.List;
 // Make movie parcelable
 @Parcel
 public class Movie {
-    String posterPath;
+
+    int movieId;
     String title;
     String overview;
+    String posterPath;
     String backdropPath;
     double rating;
 
@@ -26,9 +28,10 @@ public class Movie {
     // Constructor
     public Movie(JSONObject jsonObject) throws JSONException {
         // Read and parse the fields we care about from json response body
-        posterPath = jsonObject.getString("poster_path");
+        movieId = jsonObject.getInt("id");
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
+        posterPath = jsonObject.getString("poster_path");
         backdropPath = jsonObject.getString("backdrop_path");
         rating = jsonObject.getDouble("vote_average");
     }
@@ -40,6 +43,19 @@ public class Movie {
             movieList.add( new Movie( movieJsonArray.getJSONObject(i) ) );
         }
         return movieList;
+    }
+
+    public int getMovieId() {
+        return movieId;
+    }
+
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getOverview() {
+        return overview;
     }
 
     public String getPosterPath() {
@@ -56,14 +72,6 @@ public class Movie {
     public String getBackdropPath() {
         // hardcode size to be a width of 342
         return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getOverview() {
-        return overview;
     }
 
     public double getRating() {
