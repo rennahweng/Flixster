@@ -7,24 +7,26 @@ Flixster is a movie browsing app that allows users to browse movies from the lis
 
 #### REQUIRED (10pts)
 
-- [ ] (8pts) Expose details of movie (ratings using RatingBar, popularity, and synopsis) in a separate activity.
-- [ ] (2pts) Allow video posts to be played in full-screen using the YouTubePlayerView.
+- [x] (8pts) Expose details of movie (ratings using RatingBar, popularity, and synopsis) in a separate activity.
+- [x] (2pts) Allow video posts to be played in full-screen using the YouTubePlayerView.
 
 #### BONUS
 
-- [ ] Trailers for popular movies are played automatically when the movie is selected (1 point).
-  - [ ] When clicking on a popular movie (i.e. a movie voted for more than 5 stars) the video should be played immediately.
-  - [ ] Less popular videos rely on the detailed page should show an image preview that can initiate playing a YouTube video.
+- [x] Implement a shared element transition when user clicks into the details of a movie (1 point).
+- [x] Trailers for popular movies are played automatically when the movie is selected (1 point).
+  - [x] When clicking on a popular movie (i.e. a movie voted for **more than 6 stars**) the video should be played immediately.
+    - *NOTE: I change the criteria from 5 stars to 6 stars because the ratings for the movies I extracted are all above 5 stars.*
+  - [x] Less popular videos rely on the detailed page should show an image preview that can initiate playing a YouTube video.
 - [ ] Add a play icon overlay to popular movies to indicate that the movie can be played (1 point).
-- [ ] Apply the popular ButterKnife annotation library to reduce view boilerplate. (1 point)
-- [ ] Add a rounded corners for the images using the Glide transformations. (1 point)
+- [ ] Apply data binding for views to help remove boilerplate code. (1 point)
+- [x] Add a rounded corners for the images using the Glide transformations. (1 point)
 
 ### App Walkthough GIF
 <img src="https://github.com/rennahweng/Flixster/blob/master/walkthroughs/portrait_part2.gif" width=300><br>
+<img src="https://github.com/rennahweng/Flixster/blob/master/walkthroughs/landscape_part2.gif" width=300><br>
 
 ### Notes
-
-Describe any challenges encountered while building the app.
+It was challenging to understand where to put data binding since we have a MovieAdapter and a MainActivity. The example provided inflate values in MainActivity, but for our project we inflate and change their values in MovieAdapter, so that took me a while to figure out.
 
 ## Open-source libraries used
 - [Android Async HTTP](https://github.com/codepath/CPAsyncHttpClient) - Simple asynchronous HTTP requests with JSON parsing
