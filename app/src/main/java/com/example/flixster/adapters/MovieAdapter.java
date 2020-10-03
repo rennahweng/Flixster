@@ -77,11 +77,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
      // Nested class - ViewHolder
     // ViewHolder is a representation of our row in the RecycleView
     public class ViewHolder extends RecyclerView.ViewHolder {
-
-         RelativeLayout container;
-         TextView tvTitle;
+        RelativeLayout container;
+        TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
+        // YouTubePlayerView youtubePlayer;
 
         // Constructor
         public ViewHolder(@NonNull View itemView) {
@@ -90,6 +90,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
             container = itemView.findViewById(R.id.container);
+            // youtubePlayer = itemView.findViewById(R.id.youtubePlayer);
         }
 
          public void bind(final Movie movie) {
@@ -129,10 +130,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                      i.putExtra("movie", Parcels.wrap(movie));
 
                      // start the target activity by specifying a bundle of those shared elements and views
+                     Pair<View, String> posterVideoPair = Pair.create((View) ivPoster, "posterToVideo");
                      Pair<View, String> titlePair = Pair.create((View) tvTitle, "movieTitle");
                      Pair<View, String> overviewPair = Pair.create((View) tvOverview, "movieOverview");
+                     //noinspection unchecked
                      ActivityOptionsCompat options = ActivityOptionsCompat.
-                             makeSceneTransitionAnimation((Activity) context, titlePair, overviewPair);
+                             makeSceneTransitionAnimation((Activity) context, posterVideoPair, titlePair, overviewPair);
 
                      // brings up the second activity
                      context.startActivity(i, options.toBundle());

@@ -12,6 +12,7 @@
 <!--    YouTube Player View-->
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/youtubePlayer"
+        android:transitionName="posterToVideo"
         android:layout_width="match_parent"
         android:layout_height="250dp"/>
 

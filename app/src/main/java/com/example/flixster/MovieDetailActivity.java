@@ -1,7 +1,5 @@
 package com.example.flixster;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.RatingBar;
@@ -45,7 +43,7 @@ public class MovieDetailActivity extends YouTubeBaseActivity {
         // Once data is added to intent bundle, pull whole movie object from bundle
         // then pull specific data and populate them
         // On the receiving side, we need to unwrap the object:
-        Movie movie = Parcels.unwrap( getIntent().getParcelableExtra("movie") );
+        final Movie movie = Parcels.unwrap( getIntent().getParcelableExtra("movie") );
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
         ratingBar.setRating( (float) movie.getRating() );
@@ -61,12 +59,12 @@ public class MovieDetailActivity extends YouTubeBaseActivity {
                     if (results.length() == 0) {
                         // the video with key "" is a placeholder for movies with no trailers
                         String videoHolderKey = "yqWX86uT5jMi";
-                        initializeYoutube(videoHolderKey);
+                        initializeYoutube(movie, videoHolderKey);
                     } else {
                         String youtubeKey = results.getJSONObject(0).getString("key");
                         Log.d(TAG, youtubeKey);
                         // store youtubeKey received from the movie api so we can cue video later
-                        initializeYoutube(youtubeKey);
+                        initializeYoutube(movie, youtubeKey);
                     }
                 } catch (JSONException e) {
                     Log.e(TAG, "Failed to parse JSON", e);
@@ -82,7 +80,7 @@ public class MovieDetailActivity extends YouTubeBaseActivity {
     }
 
     // Dynamically initialize youtube key to cue corresponding videos for each movie
-    private void initializeYoutube(final String youtubeKey) {
+    private void initializeYoutube(final Movie movie, final String youtubeKey) {
         // Add movie trailer in youtube player view
         youtubePlayerView.initialize(YOUTUBE_API_KEY, new YouTubePlayer.OnInitializedListener() {
             @Override
@@ -91,8 +89,13 @@ public class MovieDetailActivity extends YouTubeBaseActivity {
                 Log.d(TAG, "onInitializationSuccess");
 
                 // Extract video id of the movies from movie database api,
-                // then the cue video (no auto-play)
-                youTubePlayer.cueVideo(youtubeKey);
+                // then load video (auto-play) for high-rating movies,
+                // otherwise cue video (NO auto-play)
+                if (movie.getRating() > 6) {
+                    youTubePlayer.loadVideo(youtubeKey);
+                } else {
+                    youTubePlayer.cueVideo(youtubeKey);
+                }
             }
 
             @Override
