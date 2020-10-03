@@ -23,10 +23,11 @@ Flixster is a movie browsing app that allows users to browse movies from the lis
 
 ### App Walkthough GIF
 <img src="https://github.com/rennahweng/Flixster/blob/master/walkthroughs/portrait_part2.gif" width=300><br>
-<img src="https://github.com/rennahweng/Flixster/blob/master/walkthroughs/landscape_part2.gif" width=300><br>
+<br>
+<img src="https://github.com/rennahweng/Flixster/blob/master/walkthroughs/landscape_part2.gif" width=600><br>
 
 ### Notes
-It was challenging to understand where to put data binding since we have a MovieAdapter and a MainActivity. The example provided inflate values in MainActivity, but for our project we inflate and change their values in MovieAdapter, so that took me a while to figure out.
+It was challenging to understand where to put data binding since we have a MovieAdapter and a MainActivity. The example provided inflate values in MainActivity, but for our project we inflate and change their values in MovieAdapter, so I couldn't figure out.
 
 ## Open-source libraries used
 - [Android Async HTTP](https://github.com/codepath/CPAsyncHttpClient) - Simple asynchronous HTTP requests with JSON parsing
