@@ -1,5 +1,6 @@
 package com.example.flixster.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -12,6 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -120,11 +123,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                      // 2. Navigate to a new activity
                      // first parameter is the context, second is the class of the activity to launch
                      Intent i = new Intent(context, MovieDetailActivity.class);
+
                      // put "extras" into the bundle for access in the second activity
                      // Parcelable allows to break an object down and reconstruct on receiving activity
                      i.putExtra("movie", Parcels.wrap(movie));
+
+                     // start the target activity by specifying a bundle of those shared elements and views
+                     Pair<View, String> titlePair = Pair.create((View) tvTitle, "movieTitle");
+                     Pair<View, String> overviewPair = Pair.create((View) tvOverview, "movieOverview");
+                     ActivityOptionsCompat options = ActivityOptionsCompat.
+                             makeSceneTransitionAnimation((Activity) context, titlePair, overviewPair);
+
                      // brings up the second activity
-                     context.startActivity(i);
+                     context.startActivity(i, options.toBundle());
                  }
              });
          }

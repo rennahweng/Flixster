@@ -48,4 +48,5 @@ dependencies {
     // For adding entire movie object to intent bundle and send to another activity
     implementation 'org.parceler:parceler-api:1.1.12'
     annotationProcessor 'org.parceler:parceler:1.1.12'
+
 }

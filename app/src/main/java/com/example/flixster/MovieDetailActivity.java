@@ -91,7 +91,7 @@ public class MovieDetailActivity extends YouTubeBaseActivity {
                 Log.d(TAG, "onInitializationSuccess");
 
                 // Extract video id of the movies from movie database api,
-                // then cue video, play video, or other actions
+                // then the cue video (no auto-play)
                 youTubePlayer.cueVideo(youtubeKey);
             }
 
