@@ -59,7 +59,9 @@ public class MovieDetailActivity extends YouTubeBaseActivity {
                     JSONArray results = json.jsonObject.getJSONArray("results");
                     // check if we get an non-empty result back from api
                     if (results.length() == 0) {
-                        return;
+                        // the video with key "" is a placeholder for movies with no trailers
+                        String videoHolderKey = "yqWX86uT5jMi";
+                        initializeYoutube(videoHolderKey);
                     } else {
                         String youtubeKey = results.getJSONObject(0).getString("key");
                         Log.d(TAG, youtubeKey);
