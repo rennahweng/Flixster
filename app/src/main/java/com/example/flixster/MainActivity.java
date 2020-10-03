@@ -1,15 +1,18 @@
 package com.example.flixster;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.flixster.adapters.MovieAdapter;
+import com.example.flixster.databinding.ItemMovieBinding;
 import com.example.flixster.models.Movie;
 
 import org.json.JSONArray;
@@ -28,12 +31,17 @@ public class MainActivity extends AppCompatActivity {
 
     List<Movie> movieList;
 
+    // Store the binding
+    private ItemMovieBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // .onCreate() means activity is starting, but not visible to user
         super.onCreate(savedInstanceState);
+
         // setContentView() initializes views and set up any adapters
         setContentView(R.layout.activity_main);
+        binding = DataBindingUtil.setContentView((Activity) context, R.layout.item_movie);
 
         RecyclerView rvMovies = findViewById(R.id.rvMovies);
         movieList = new ArrayList<Movie>();

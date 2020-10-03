@@ -4,6 +4,10 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
 
+    // Data Binding Library removes boilerplate for data-driven UI
+    // and allowing for two-way binding between views and data objects.
+    dataBinding.enabled = true
+
     defaultConfig {
         applicationId "com.example.flixster"
         minSdkVersion 21
