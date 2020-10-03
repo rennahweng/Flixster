@@ -9,6 +9,12 @@
     android:orientation="vertical"
     >
 
+<!--    YouTube Player View-->
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/youtubePlayer"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"/>
+
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
@@ -19,8 +25,7 @@
         android:textSize="30sp"
         tools:text="The Devil All the Time"
         android:textStyle="bold"
-        >
-    </TextView>
+        />
     
     <RatingBar
         android:id="@+id/ratingBar"
@@ -32,8 +37,7 @@
         android:rating="10"
         android:isIndicator="true"
         style="@style/Widget.AppCompat.RatingBar.Indicator"
-        >
-    </RatingBar>
+        />
 <!--    set "style" as "Indicator" omits user from modifying it, just indicate it-->
 
     <TextView
@@ -47,7 +51,6 @@
         tools:text="In Knockemstiff, Ohio and its neighboring backwoods,
         sinister characters converge around young Arvin Russell as he
         fights the evil forces that threaten him and his family."
-        >
-    </TextView>
+        />
 
 </LinearLayout>
