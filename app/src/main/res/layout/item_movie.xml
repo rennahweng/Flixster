@@ -1,17 +1,20 @@
 <!-- layout container tag tells Android Studio that this layout should take
     the extra processing during compilation time to find all the interesting
     Views and note them for use with the data binding library.-->
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ExtraText">
 <!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
 <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
 <!--    xmlns:tools="http://schemas.android.com/tools"-->
     <RelativeLayout
         android:id="@+id/container"
+        android:background="@color/lighterBlack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="0dp">
+        android:layout_marginBottom="20dp">
 
         <ImageView
             android:id="@+id/ivPoster"
@@ -34,21 +37,35 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@id/ivPoster"
-            android:textColor="#000000"
+            android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
             tools:text="The Devil All the Time" />
+
+        <TextView
+            android:id="@+id/tvReleaseDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/ivPoster"
+            android:layout_below="@id/tvTitle"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            tools:text="Release 2020-09-11"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"/>
 
         <TextView
             android:id="@+id/tvOverview"
             android:transitionName="movieOverview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvTitle"
+            android:layout_below="@+id/tvReleaseDate"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
             android:layout_toEndOf="@+id/ivPoster"
-            android:textColor="#272626"
+            android:textColor="#FFFFFF"
             tools:text="In Knockemstiff, Ohio and its neighboring backwoods, sinister characters converge around young Arvin Russell as he fights the evil forces that threaten him and his family." />
 
     </RelativeLayout>

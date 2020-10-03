@@ -1,11 +1,9 @@
 package com.example.flixster;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,7 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
         // setContentView() initializes views and set up any adapters
         setContentView(R.layout.activity_main);
-        binding = DataBindingUtil.setContentView((Activity) context, R.layout.item_movie);
+
+        // Inflate the content view (replacing `setContentView`)
+        //binding = DataBindingUtil.setContentView((Activity) context, R.layout.item_movie);
+
 
         RecyclerView rvMovies = findViewById(R.id.rvMovies);
         movieList = new ArrayList<Movie>();

@@ -15,13 +15,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
-import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.flixster.MovieDetailActivity;
 import com.example.flixster.R;
-import com.example.flixster.databinding.ItemMovieBinding;
 import com.example.flixster.models.Movie;
 
 import org.parceler.Parcels;
@@ -79,37 +77,39 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
      // Nested class - ViewHolder
     // ViewHolder is a representation of our row in the RecycleView
     public class ViewHolder extends RecyclerView.ViewHolder {
-        // Store the binding
-        ItemMovieBinding binding;
-
         RelativeLayout container;
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
+        TextView tvReleaseDate;
+
+        // Store the binding
+        //ItemMovieBinding binding;
 
          // Constructor
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Inflate the content view (replacing `setContentView`)
-            binding = DataBindingUtil.setContentView((Activity) context, R.layout.item_movie);
-            tvTitle = binding.tvTitle;
-            tvOverview = binding.tvOverview;
-            ivPoster = binding.ivPoster;
-            container = binding.container;
+            tvTitle = itemView.findViewById(R.id.tvTitle);
+            tvOverview = itemView.findViewById(R.id.tvOverview);
+            ivPoster = itemView.findViewById(R.id.ivPoster);
+            container = itemView.findViewById(R.id.container);
+            tvReleaseDate = itemView.findViewById(R.id.tvReleaseDate);
 
-//            tvTitle = itemView.findViewById(R.id.tvTitle);
-//            tvOverview = itemView.findViewById(R.id.tvOverview);
-//            ivPoster = itemView.findViewById(R.id.ivPoster);
-//            container = itemView.findViewById(R.id.container);
+//            tvTitle = binding.tvTitle;
+//            tvOverview = binding.tvOverview;
+//            ivPoster = binding.ivPoster;
+//            container = binding.container;
         }
 
          public void bind(final Movie movie) {
-            // Use the binding to update views directly on the binding
-            binding.tvTitle.setText(movie.getTitle());
-            binding.tvOverview.setText(movie.getOverview());
+            tvTitle.setText(movie.getTitle());
+            tvOverview.setText(movie.getOverview());
+            String releaseDateText = "Release " + movie.getReleaseDate();
+            tvReleaseDate.setText(releaseDateText);
 
-//            tvTitle.setText(movie.getTitle());
-//            tvOverview.setText(movie.getOverview());
+//            // Use the binding to update views directly on the binding
+//            binding.tvTitle.setText(movie.getTitle());
+//            binding.tvOverview.setText(movie.getOverview());
 
             // To have different poster path for different orientation (portrait vs landscape)
              String imageUrl;

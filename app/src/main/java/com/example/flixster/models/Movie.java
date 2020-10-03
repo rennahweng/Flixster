@@ -20,10 +20,12 @@ public class Movie {
     String posterPath;
     String backdropPath;
     double rating;
+    String releaseDate;
 
     // Empty constructor needed by Parcel library
     public Movie() {
     }
+
 
     // Constructor
     public Movie(JSONObject jsonObject) throws JSONException {
@@ -34,6 +36,7 @@ public class Movie {
         posterPath = jsonObject.getString("poster_path");
         backdropPath = jsonObject.getString("backdrop_path");
         rating = jsonObject.getDouble("vote_average");
+        releaseDate = jsonObject.getString("release_date");
     }
 
     // Return a list of movies from the jsonArray "results"
@@ -77,4 +80,9 @@ public class Movie {
     public double getRating() {
         return rating;
     }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
 }
